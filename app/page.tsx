@@ -27,7 +27,8 @@ export default function Page() {
     if (button !== "1") {
       setOpenForm(true);
     } else {
-      window.location.href = "https://wa.me/573178520000?text=Hola, quiero saber mas de MoneyMaker";
+      window.location.href =
+        "https://wa.me/573178520000?text=Hola, quiero saber mas de MoneyMaker";
     }
   };
 
@@ -74,37 +75,35 @@ export default function Page() {
           id="d1"
         />
 
-
-
         {/* Botón CTA (desktop) */}
         <div className="absolute top-[32%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20 cursor-pointer">
           {showButton && (
             <div className="flex gap-4 justify-between items-center w-full px-24">
-            
-            <button
-              onClick={() => handleButton("1")}
-              className="bg-transparent text-black py-2 rounded-md cursor-pointer"
-            >
-              <img
-                src="/button-1.png"
-                alt="Botón principal"
-                width={560}
-                height={160}
-                className="object-contain pointer-events-none select-none"
-              />
-            </button>
-            <button
-              onClick={() => handleButton("2")}
-              className="bg-transparent text-black py-2 rounded-md cursor-pointer"
-            >
-              <img
-                src="/button-2.png"
-                alt="Botón principal"
-                width={560}
-                height={160}
-                className="object-contain pointer-events-none select-none"
-              />
-            </button>
+              <button
+                onClick={() => handleButton("1")}
+                className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
+              >
+                <img
+                  src="/button-1.png"
+                  alt="Botón principal"
+                  width={560}
+                  height={160}
+                  className="object-contain pointer-events-none select-none transform transition-transform duration-200 ease-out will-change-transform origin-center lg:group-hover:scale-[1.2]"
+                />
+              </button>
+
+              <button
+                onClick={() => handleButton("2")}
+                className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
+              >
+                <img
+                  src="/button-2.png"
+                  alt="Botón principal"
+                  width={560}
+                  height={160}
+                  className="object-contain pointer-events-none select-none transform transition-transform duration-200 ease-out will-change-transform origin-center lg:group-hover:scale-[1.2]"
+                />
+              </button>
             </div>
           )}
         </div>
@@ -141,12 +140,10 @@ export default function Page() {
         id="1"
       />
 
-
-
       <div className="absolute top-[18%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button
-            onClick={handleButton}
+            onClick={() => handleButton("1")}
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
@@ -160,8 +157,6 @@ export default function Page() {
         )}
       </div>
 
-
-
       {/* Video 2 */}
       <VideoSection
         src="/landing-mobile-2.mp4"
@@ -172,7 +167,7 @@ export default function Page() {
       <div className="absolute top-[34%] flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button
-            onClick={handleButton}
+            onClick={() => handleButton("2")}
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
@@ -215,35 +210,48 @@ function VideoSection({
   sideFadeWidthMobile = 96,
   sideFadeWidthDesktop = 320,
 }: {
-  src?: string
-  label?: string
-  id?: string
-  sideFadeWidthMobile?: number
-  sideFadeWidthDesktop?: number
+  src?: string;
+  label?: string;
+  id?: string;
+  sideFadeWidthMobile?: number;
+  sideFadeWidthDesktop?: number;
 }) {
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024)
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Gradiente lateral muy exagerado: negro sólido en el borde que se desvanece al centro
   const sideGradientL =
-    "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.97) 12%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 72%, rgba(0,0,0,0) 100%)"
+    "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.97) 12%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 72%, rgba(0,0,0,0) 100%)";
   const sideGradientR =
-    "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.97) 12%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 72%, rgba(0,0,0,0) 100%)"
+    "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.97) 12%, rgba(0,0,0,0.9) 26%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 72%, rgba(0,0,0,0) 100%)";
 
-  const videoClass = isDesktop ? "w-full h-full object-cover" : "w-auto h-auto max-w-full max-h-full object-contain"
+  const videoClass = isDesktop
+    ? "w-full h-full object-cover"
+    : "w-auto h-auto max-w-full max-h-full object-contain";
 
   return (
     <section className="relative h-[100dvh] overflow-hidden bg-black">
       <div
-        className={`absolute inset-0 flex items-center justify-center ${id === "2" ? "w-full h-full" : "min-w-[95vw]"}`}
+        className={`absolute inset-0 flex items-center justify-center ${
+          id === "2" ? "w-full h-full" : "min-w-[95vw]"
+        }`}
       >
-        <video src={src} className={videoClass} autoPlay muted loop playsInline preload="auto" aria-label={label} />
+        <video
+          src={src}
+          className={videoClass}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={label}
+        />
       </div>
 
       {/* SOLO DIFUMINADOS LATERALES (no superior, no inferior) */}
@@ -256,7 +264,10 @@ function VideoSection({
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-0 top-0 bottom-0 hidden md:block"
-        style={{ width: `${sideFadeWidthDesktop}px`, background: sideGradientL }}
+        style={{
+          width: `${sideFadeWidthDesktop}px`,
+          background: sideGradientL,
+        }}
       />
       {/* Derecha */}
       <div
@@ -267,10 +278,13 @@ function VideoSection({
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-0 bottom-0 hidden md:block"
-        style={{ width: `${sideFadeWidthDesktop}px`, background: sideGradientR }}
+        style={{
+          width: `${sideFadeWidthDesktop}px`,
+          background: sideGradientR,
+        }}
       />
     </section>
-  )
+  );
 }
 
 /* ----------------------------- VideoSectionDesktop ----------------------------- */
