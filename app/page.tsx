@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { LeadFormModal } from "@/components/modal-lead";
 
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 export default function Page() {
   const [showImages, setShowImages] = useState(false);
   const [openForm, setOpenForm] = useState(false);
@@ -27,6 +33,10 @@ export default function Page() {
     if (button !== "1") {
       setOpenForm(true);
     } else {
+      window.fbq("track", "StartTrial", {
+        value: 0,
+        currency: "USD",
+      });
       window.location.href =
         "https://wa.me/573178520000?text=Hola, quiero saber mas de MoneyMaker";
     }
@@ -80,6 +90,7 @@ export default function Page() {
           {showButton && (
             <div className="flex gap-4 justify-between items-center w-full px-24">
               <button
+                id="cta-button"
                 onClick={() => handleButton("1")}
                 className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
               >
@@ -143,6 +154,7 @@ export default function Page() {
       <div className="absolute top-[18%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button
+            id="cta-button"
             onClick={() => handleButton("1")}
             className="bg-transparent text-black py-2 rounded-md"
           >
@@ -167,6 +179,7 @@ export default function Page() {
       <div className="absolute top-[34%] flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button
+            id="cta-button"
             onClick={() => handleButton("2")}
             className="bg-transparent text-black py-2 rounded-md"
           >
