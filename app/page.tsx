@@ -184,7 +184,7 @@ export default function Page() {
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
-                  src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-2.png`}
+              src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-2.png`}
               alt="Logo principal"
               width={300}
               height={100}
