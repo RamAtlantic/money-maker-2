@@ -95,7 +95,7 @@ export default function Page() {
                 className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
               >
                 <img
-                  src="/button-1.png"
+                  src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-1.png`}
                   alt="Botón principal"
                   width={560}
                   height={160}
@@ -108,7 +108,7 @@ export default function Page() {
                 className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
               >
                 <img
-                  src="/button-2.png"
+                  src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-2.png`}
                   alt="Botón principal"
                   width={560}
                   height={160}
@@ -159,7 +159,7 @@ export default function Page() {
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
-              src="/button-1.png"
+              src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-1.png`}
               alt="Logo principal"
               width={300}
               height={100}
@@ -184,7 +184,7 @@ export default function Page() {
             className="bg-transparent text-black py-2 rounded-md"
           >
             <img
-              src="/button-2.png"
+                  src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-2.png`}
               alt="Logo principal"
               width={300}
               height={100}
