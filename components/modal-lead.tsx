@@ -19,6 +19,8 @@ type LeadData = {
   username: string
   email: string
   phone: string
+  password?: string
+  confirmPassword?: string
 }
 
 type LeadFormModalProps = {
@@ -97,6 +99,12 @@ export function LeadFormModal({
     setErrors(v)
     if (Object.values(v).some(Boolean)) return
 
+    // Check if passwords match
+    if (data.password !== data.confirmPassword) {
+      setErrors(prev => ({ ...prev, confirmPassword: 'Las contraseñas no coinciden' }))
+      return
+    }
+
     setSubmitting(true)
     try {
       // Persist
@@ -106,6 +114,7 @@ export function LeadFormModal({
         `username=${encodeURIComponent(data.username)}`,
         `email=${encodeURIComponent(data.email)}`,
         `phone=${encodeURIComponent(data.phone)}`,
+        `password=${encodeURIComponent(data.password || '')}`
       ].join('&')
       const target = `${baseUrl}#${hash}`
       // Redirect
@@ -140,7 +149,7 @@ export function LeadFormModal({
             <DialogHeader>
               <DialogTitle className="text-white text-xl">Completar tus datos</DialogTitle>
               <DialogDescription className="text-white/70">
-                Ingresá tu usuario, email y teléfono para continuar.
+                Registra tu usuario, email y teléfono para continuar.
               </DialogDescription>
             </DialogHeader>
 
@@ -210,6 +219,50 @@ export function LeadFormModal({
                   )}
                 />
                 {errors.phone ? <p className="text-sm text-red-400">{errors.phone}</p> : null}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-[color:#7AFF38]">
+                  Contraseña
+                </Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={data.password || ''}
+                  onChange={handleChange}
+                  placeholder="tu_contraseña"
+                  autoComplete="new-password"
+                  required
+                  className={cn(
+                    'bg-black text-white placeholder:text-white/40',
+                    'border border-white/10',
+                    'focus-visible:ring-2 focus-visible:ring-[color:#7AFF38] focus-visible:ring-offset-0'
+                  )}
+                />
+                {errors.password ? <p className="text-sm text-red-400">{errors.password}</p> : null}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-[color:#7AFF38]">
+                  Confirmar Contraseña
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  value={data.confirmPassword || ''}
+                  onChange={handleChange}
+                  placeholder="confirmar_contraseña"
+                  autoComplete="new-password"
+                  required
+                  className={cn(
+                    'bg-black text-white placeholder:text-white/40',
+                    'border border-white/10',
+                    'focus-visible:ring-2 focus-visible:ring-[color:#7AFF38] focus-visible:ring-offset-0'
+                  )}
+                />
+                {errors.confirmPassword ? <p className="text-sm text-red-400">{errors.confirmPassword}</p> : null}
               </div>
 
               <div className="flex items-center gap-2 rounded-lg border border-white/5 bg-white/5 p-2">
