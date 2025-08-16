@@ -112,7 +112,7 @@ export default function Page() {
 
         {/* Más videos desktop */}
         <VideoSectionDesktop
-          src="/landing-desktop-2.mp4"
+          src={`${process.env.NEXT_PUBLIC_URL_CDN}/landing-desktop-2.mp4`}
           label="Video 2 Desktop"
           id="d2"
         />
@@ -132,7 +132,7 @@ export default function Page() {
     <main className="relative bg-black min-h-screen">
       {/* Video 1 */}
       <VideoSection
-        src="/landing-mobile-1.mp4"
+        src={`${process.env.NEXT_PUBLIC_URL_CDN}/landing-mobile-1.mp4`}
         label="Video 1: Relámpagos y templo"
         id="1"
       />
@@ -157,7 +157,7 @@ export default function Page() {
 
       {/* Video 2 */}
       <VideoSection
-        src="/landing-mobile-2.mp4"
+        src={`${process.env.NEXT_PUBLIC_URL_CDN}/landing-mobile-2.mp4`}
         label="Video 2: Relámpagos y templo"
         id="2"
       />
