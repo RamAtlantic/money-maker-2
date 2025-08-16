@@ -80,29 +80,15 @@ export default function Page() {
       <main className="relative bg-black min-h-screen">
         {/* Video 1 (Desktop) */}
         <VideoSectionDesktop
-          src="/landing-desktop-1.mp4"
+          src={`${process.env.NEXT_PUBLIC_URL_CDN}/two-desktop.mp4`}
           label="Video 1 Desktop"
           id="d1"
         />
 
         {/* Botón CTA (desktop) */}
-        <div className="absolute top-[32%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20 cursor-pointer">
+        <div className="absolute top-[25%] left-1/5 flex justify-center items-center w-full z-20 cursor-pointer">
           {showButton && (
             <div className="flex gap-4 justify-between items-center w-full px-24">
-              <button
-                id="cta-button"
-                onClick={() => handleButton("1")}
-                className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
-              >
-                <img
-                  src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-1.png`}
-                  alt="Botón principal"
-                  width={560}
-                  height={160}
-                  className="object-contain pointer-events-none select-none transform transition-transform duration-200 ease-out will-change-transform origin-center lg:group-hover:scale-[1.2]"
-                />
-              </button>
-
               <button
                 onClick={() => handleButton("2")}
                 className="bg-transparent text-black py-2 rounded-md cursor-pointer group"
@@ -110,7 +96,7 @@ export default function Page() {
                 <img
                   src={`${process.env.NEXT_PUBLIC_URL_CDN}/button-2.png`}
                   alt="Botón principal"
-                  width={560}
+                  width={660}
                   height={160}
                   className="object-contain pointer-events-none select-none transform transition-transform duration-200 ease-out will-change-transform origin-center lg:group-hover:scale-[1.2]"
                 />
